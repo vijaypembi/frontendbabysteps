@@ -1,0 +1,37 @@
+.side-dashbord {
+    padding: 15px;
+    margin: 10px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    color: aliceblue;
+    border-radius: 10px;
+    background-color: #372f7a;
+}
+.side-dashbord-name {
+    margin-left: 10px;
+}
+.side-options {
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #222323;
+    color: aliceblue;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+.side-options:hover {
+    /* background-color: rgb(241, 248, 248); */
+    border-style: solid;
+    border-width: 1.2px;
+    padding: 10px;
+    font-weight: 600;
+    font-size: 16px;
+    color: #e4ecec;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+/* 43389e 372f7a*/
+.side-main-container {
+    background-color: #43389e;
+    min-width: 200px;
+}

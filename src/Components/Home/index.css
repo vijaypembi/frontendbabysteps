@@ -1,0 +1,184 @@
+/* index.css */
+* {
+    font-family: "poppins";
+}
+.loader-container {
+    height: 100vh;
+    font-family: "poppins";
+    font-weight: 600;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader-error {
+    flex-direction: column;
+    font-weight: 400;
+    color: rgb(227, 117, 117);
+}
+.loader-error-icon {
+    color: #2d2d2d;
+    cursor: pointer;
+}
+.loader-error-message {
+    font-weight: 400;
+}
+.home-main-container {
+    display: flex;
+    /* min-height: 100vh; */
+    background-color: #f8f9fa;
+    height: 100vh;
+}
+
+.home-middle-container {
+    flex-grow: 1;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow-y: auto;
+}
+
+.doctors-main-container {
+    display: grid;
+    gap: 1.5rem;
+    padding: 0;
+    list-style: none;
+}
+
+.each-doctor-container {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    transition: transform 0.2s ease;
+}
+
+.each-doctor-container:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.each-doctor-left {
+    flex: 1;
+    padding-right: 1rem;
+}
+
+.each-doctor-name {
+    color: #2d2d2d;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.each-doctor-spelization {
+    color: #495057;
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+    font-style: italic;
+}
+
+.each-doctor-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+    min-width: 250px;
+}
+
+.each-doctor-timings {
+    color: #4a90e2;
+    font-size: 0.9rem;
+    text-align: right;
+    margin-bottom: 1rem;
+    background-color: #f3f4f6;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+}
+/* 43389e  372f7a */
+
+.each-doctor-button {
+    background-color: #43389e;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    margin-right: auto;
+}
+
+.each-doctor-button:hover {
+    background-color: #059669;
+    transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .each-doctor-container {
+        flex-direction: column;
+    }
+
+    .each-doctor-right {
+        align-items: flex-start;
+        margin-top: 1rem;
+        min-width: auto;
+    }
+
+    .each-doctor-timings {
+        text-align: left;
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .home-middle-container {
+        padding: 1rem;
+    }
+
+    .each-doctor-name {
+        font-size: 1.25rem;
+    }
+
+    .each-doctor-button {
+        width: 100%;
+        padding: 0.75rem;
+    }
+}
+
+/* Updated CSS for timing display */
+.each-doctor-timings {
+    background-color: #f3f4f6;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    width: fit-content;
+}
+
+.availability-status {
+    color: #059669;
+    font-weight: 600;
+    display: flex;
+    align-items: start;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    margin-right: auto;
+}
+
+.availability-status span {
+    font-size: 0.9rem;
+}
+
+.working-hours {
+    color: #374151;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-right: auto;
+}

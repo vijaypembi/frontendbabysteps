@@ -1,0 +1,183 @@
+/* Added doctor details styling */
+* {
+    font-family: "poppins";
+}
+
+.doctor-date-picker {
+    padding: 5px;
+    font-size: 16px;
+    border: 1px solid #6b7280;
+    margin: 20px 0;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #333;
+    cursor: pointer;
+}
+/* 43389e 372f7a*/
+
+.doctor-date-picker:hover {
+    outline: solid;
+    border-color: #372f7a;
+    /* box-shadow: 0 0 3px rgba(0, 123, 255, 0.3); */
+}
+.time-slots-container {
+    padding: 10px;
+    border-radius: 10px;
+    list-style-type: none;
+    height: fit-content;
+    background-color: #372f7a;
+}
+.time-slots-available {
+    height: 30px;
+    width: 150px;
+    border: none;
+    border-radius: 5px;
+    margin: 10px;
+    cursor: pointer;
+    font-family: "poppins";
+    font-size: 14px;
+}
+.time-slots-available:focus {
+    outline: none;
+    border-color: white;
+    box-shadow: 0 0 3px rgba(0, 123, 255, 0.3);
+}
+.doctor-select-date-name {
+    font-size: 22px;
+    margin: 0px;
+}
+.doctor-date-pickerr:focus {
+    outline: none;
+    border-color: #2196f3;
+}
+
+.doctor-select-appointment-container {
+}
+.loader-container {
+    height: 100vh;
+    font-family: "poppins";
+    font-weight: 600;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader-error {
+    flex-direction: column;
+    font-weight: 400;
+    color: rgb(227, 117, 117);
+}
+.loader-error-icon {
+    color: #2d2d2d;
+    cursor: pointer;
+}
+.loader-error-message {
+    font-weight: 400;
+}
+
+.doctor-info h2 {
+    margin: 0 0 0.5rem 0;
+    color: #1f2937;
+}
+
+.doctor-specialty {
+    color: #059669;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.doctor-experience {
+    color: #6b7280;
+    font-size: 0.9rem;
+}
+
+/* Booking controls */
+.booking-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2rem 0;
+}
+
+/* Enhanced book button */
+.book-button {
+    padding: 1rem 2rem;
+    background: #059669;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    opacity: 0.5;
+}
+
+.book-button:not(:disabled) {
+    opacity: 1;
+    box-shadow: 0 4px 6px rgba(5, 150, 105, 0.1);
+}
+
+.book-button:not(:disabled):hover {
+    background: #047857;
+    transform: translateY(-1px);
+}
+
+/* Selected time display */
+.selected-time {
+    font-weight: 500;
+    color: #1f2937;
+    padding: 0.5rem 1rem;
+    background: #f0fdf4;
+    border-radius: 6px;
+}
+
+/* Confirmation message */
+.confirmation {
+    text-align: center;
+    padding: 1.5rem;
+    background: #f0fdf4;
+    border-radius: 8px;
+    margin-top: 1.5rem;
+    display: none;
+}
+
+.doctor-profile {
+    display: flex;
+    gap: 1.5rem;
+    /* align-items: center; */
+    padding: 1.5rem;
+    background: white;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    box-shadow: 0 30px 31px rgba(12, 2, 2, 0.05);
+}
+
+.doctor-photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.doctor-details-center-container {
+    padding: 20px;
+    margin: 10px;
+    background-color: #f8f9fa;
+    width: 100%;
+}
+.doctor-details-main-container {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+}
+
+.doctor-details-main-container-blurred {
+    display: flex;
+    z-index: 100;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+    filter: blur(4px);
+    pointer-events: none;
+    scroll-behavior: none;
+}

@@ -1,0 +1,82 @@
+* {
+    font-family: "poppins";
+}
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    width: 90%;
+    height: 80%;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    max-width: 500px;
+    position: relative;
+}
+
+.close-button {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.error {
+    border-color: #ff4444;
+}
+
+.error-message {
+    color: #ff4444;
+    font-size: 0.875rem;
+    display: block;
+    margin-top: 0.25rem;
+}
+
+.char-counter {
+    text-align: right;
+    font-size: 0.875rem;
+    color: #666;
+}
+
+.submit-button {
+    background: #007bff;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 1rem;
+}
