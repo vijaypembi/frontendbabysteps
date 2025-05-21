@@ -1,9 +1,10 @@
 import { useState } from "react";
 import moment from "moment";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
+// import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./index.css";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 const AppointmentForm = ({
     doctorDetails,

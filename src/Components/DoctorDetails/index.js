@@ -1,12 +1,10 @@
 import SideContainer from "../SideContainer";
 import { useParams, useSearchParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import "./index.css";
 import { useEffect, useState } from "react";
 import { ScaleLoader } from "react-spinners";
 import { FaArrowRotateRight } from "react-icons/fa6";
-import moment, { duration } from "moment";
-import { format } from "date-fns";
+import moment from "moment";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -24,10 +22,7 @@ const DoctorDetails = () => {
     const [selectedTime, setSelectedTime] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-    const navigate = useNavigate();
     const [showForm, setShowForm] = useState(false);
-    const [startTime, setStartTime] = useState();
-    // selectedTime is in format of 2025-02-26T05:30:00.000Z is form slotDetails but date in 'YYYY-MM-DD' Format because it get from date picker
     const getSlotDuration = () => {
         const [startStr, endStr] = selectedTime.split(" - ");
         // Use today's date for reference (or any fixed date)
@@ -80,6 +75,7 @@ const DoctorDetails = () => {
     useEffect(() => {
         setSelectedDate(today); // for alowing button intially
         getAllSlotDetails(today);
+        // eslint-disable-next-line
     }, [id]);
 
     const handleSubmit = async (updateFormData) => {
