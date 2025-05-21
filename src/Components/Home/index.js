@@ -17,7 +17,7 @@ const Home = () => {
     const getAllDoctorDetails = async () => {
         try {
             setLoading(true);
-            const baseUrl = "http://localhost:5000/api/doctors/";
+            const baseUrl = `${process.env.REACT_APP_BASE_URL}/api/doctors/`;
             const response = await fetch(baseUrl);
             const data = await response.json();
             setAllDoctorsData(data);
@@ -34,12 +34,18 @@ const Home = () => {
         const selectedDate = new Date().toLocaleDateString("en-CA"); // "YYYY-MM-DD" in local time
         navigate(`/doctors/${doctorId}/slots?date=${selectedDate}`);
     };
-
     const showAllDoctorDetails = () => {
         if (loading)
             return (
                 <div className="loader-container">
                     <ScaleLoader color="#43389e" height="30px" width="10px" />
+                </div>
+            );
+
+        if (allDoctorDetails.length <= 0)
+            return (
+                <div className="loader-container">
+                    No doctors available at the moment!
                 </div>
             );
         if (error)
@@ -56,11 +62,6 @@ const Home = () => {
                     </div>
                 </div>
             );
-        if (!allDoctorDetails.length)
-            return (
-                <div className="loader-container">No doctors available!</div>
-            );
-
         return (
             <div>
                 <ul className="doctors-main-container">
@@ -96,7 +97,7 @@ const Home = () => {
                                         <polyline points="12 6 12 12 16 14" />
                                     </svg>
                                     <span>
-                                        {eachDoctor.workingHours.start} –
+                                        {eachDoctor.workingHours.start} -
                                         {eachDoctor.workingHours.end}
                                     </span>
                                 </div>

@@ -12,14 +12,8 @@ const AppointmentForm = ({
     onClose, // function
 }) => {
     const { _id, workingHours } = doctorDetails;
-    const {
-        selectedTime,
-        selectedDate,
-        patientName,
-        notes,
-        appointmentType,
-        duration,
-    } = appointmentDetails;
+    const { selectedTime, selectedDate, patientName, notes, duration } =
+        appointmentDetails;
 
     const appointmentTypeList = [
         "General Checkup",
@@ -50,15 +44,31 @@ const AppointmentForm = ({
         "CT Scan",
         "Other",
     ];
+    function convertTo24Hour(time12h) {
+        const [time, modifier] = time12h.split(" ");
+        let [hours, minutes] = time.split(":").map(Number);
 
+        if (modifier === "PM" && hours !== 12) {
+            hours += 12;
+        }
+        if (modifier === "AM" && hours === 12) {
+            hours = 0;
+        }
+
+        return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(
+            2,
+            "0"
+        )}`;
+    }
     //console.log(doctorDetails);
+    // console.log(typeof selectedTime);
     const [formData, setFormData] = useState({
         doctorId: _id,
         date: selectedDate,
-        time: selectedTime,
+        time: convertTo24Hour(selectedTime),
         duration: duration,
         patientName: patientName,
-        appointmentType: appointmentType,
+        appointmentType: appointmentTypeList[0],
         notes: notes,
     });
 
@@ -125,7 +135,7 @@ const AppointmentForm = ({
                     onClick={(e) => e.stopPropagation()}
                 >
                     <button className="close-button" onClick={onClose}>
-                        X
+                        x
                     </button>
                     <h2>Conform Appointment</h2>
                     <form onSubmit={handleSubmit}>

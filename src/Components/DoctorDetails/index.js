@@ -26,22 +26,21 @@ const DoctorDetails = () => {
     const [error, setError] = useState(null);
     const navigate = useNavigate();
     const [showForm, setShowForm] = useState(false);
-
+    const [startTime, setStartTime] = useState();
     // selectedTime is in format of 2025-02-26T05:30:00.000Z is form slotDetails but date in 'YYYY-MM-DD' Format because it get from date picker
     const getSlotDuration = () => {
-        const index = slotDetails.indexOf(selectedTime);
+        const [startStr, endStr] = selectedTime.split(" - ");
+        // Use today's date for reference (or any fixed date)
+        const todayDate = moment().format("YYYY-MM-DD");
 
-        if (index === -1) return 0; // Selected time not found
-        if (index >= slotDetails.length - 1) {
-            // If it's the last slot, use default duration
-            return 10; // or your default duration
-        }
-
-        const nextSlot = slotDetails[index + 1];
-        return moment(nextSlot).diff(moment(selectedTime), "minutes");
+        const start = moment(`${todayDate} ${startStr}`, "YYYY-MM-DD hh:mm A");
+        const end = moment(`${todayDate} ${endStr}`, "YYYY-MM-DD hh:mm A");
+        const duration = end.diff(start, "minutes");
+        // console.log(duration);
+        return duration;
     };
     const appointmentDetails = {
-        selectedTime: moment(selectedTime).format("HH:mm"),
+        selectedTime: selectedTime.split(" - ")[0],
         selectedDate,
         duration: getSlotDuration(),
         patientName: "",
@@ -54,13 +53,15 @@ const DoctorDetails = () => {
             setLoading(true);
             //const date = moment(timestamp).format("YYYY-MM-DD"); // "2025-02-25"
             // moment(eachSlot).format("HH:mm")
-            const baseUrl = `http://localhost:5000/api/doctors/${id}/slots?date=${givenDate}`;
+
+            const baseUrl = `${process.env.REACT_APP_BASE_URL}/api/doctors/${id}/slots?date=${givenDate}`;
             const response = await fetch(baseUrl);
             const data = await response.json();
+            // console.log(data);
             setSlotDetails(data.slots);
             setDoctorDetails(data.doctor);
             setError("");
-            console.log(data);
+            // console.log(data);
         } catch (error) {
             setError(error);
             console.log(error);
@@ -86,7 +87,7 @@ const DoctorDetails = () => {
 
         //console.log("Appointment Data:", formData);
         try {
-            const Baseurl = "http://localhost:5000/api/appointments/";
+            const Baseurl = `${process.env.REACT_APP_BASE_URL}/api/appointments/`;
             const options = {
                 method: "POST",
                 headers: {
@@ -97,11 +98,16 @@ const DoctorDetails = () => {
             const response = await fetch(Baseurl, options);
             const data = await response.json();
             if (response.ok) {
-                toast.success("Appointment slot booked successfully!", {
+                await toast.success("Appointment slot booked successfully!", {
                     position: "top-center",
                     autoClose: 3000,
                 });
-                // navigate("/");
+                setTimeout(() => {
+                    setShowForm(false);
+                    getAllSlotDetails(today);
+                    // Uncomment if needed
+                    // navigate("/");
+                }, 500);
             } else {
                 toast.error(`${data.error} ${data.suggestion}`, {
                     position: "top-center",
@@ -177,18 +183,14 @@ const DoctorDetails = () => {
                     {slotDetails.map((eachSlot) => (
                         <button
                             key={slotDetails.indexOf(eachSlot)}
-                            onClick={() => setSelectedTime(eachSlot)}
+                            onClick={() =>
+                                setSelectedTime(
+                                    `${eachSlot.start} - ${eachSlot.end}`
+                                )
+                            }
                             className="time-slots-available"
                         >
-                            {`${moment(eachSlot).format("HH:mm")} - ${
-                                slotDetails[slotDetails.indexOf(eachSlot) + 1]
-                                    ? moment(
-                                          slotDetails[
-                                              slotDetails.indexOf(eachSlot) + 1
-                                          ]
-                                      ).format("HH:mm")
-                                    : "End"
-                            }`}
+                            {`${eachSlot.start} - ${eachSlot.end}`}
                         </button>
                     ))}
                 </ul>
@@ -197,9 +199,7 @@ const DoctorDetails = () => {
                 <div className="booking-controls">
                     <div className="selected-time">
                         Selected time: {selectedDate}/
-                        {moment(selectedTime).format("HH:mm") !== "Invalid date"
-                            ? moment(selectedTime).format("HH:mm")
-                            : "Select Time"}
+                        {selectedTime ? selectedTime : "Select Slot"}
                     </div>
                     <button
                         onClick={() => setShowForm(true)}
